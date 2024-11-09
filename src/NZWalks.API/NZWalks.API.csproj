@@ -19,6 +19,7 @@
     <PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <ProjectReference Include="..\..\test\NZWalks.API.Test\NZWalks.API.Test.csproj" />
   </ItemGroup>
 
   <ItemGroup>

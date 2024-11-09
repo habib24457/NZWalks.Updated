@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZWalks.API.Test", "..\test\NZWalks.API.Test\NZWalks.API.Test.csproj", "{A53B653F-ADA7-4021-A02D-839E459C295C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{5ED6BD22-59C1-4791-977C-9A91C11ABF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ED6BD22-59C1-4791-977C-9A91C11ABF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ED6BD22-59C1-4791-977C-9A91C11ABF6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A53B653F-ADA7-4021-A02D-839E459C295C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A53B653F-ADA7-4021-A02D-839E459C295C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A53B653F-ADA7-4021-A02D-839E459C295C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A53B653F-ADA7-4021-A02D-839E459C295C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
