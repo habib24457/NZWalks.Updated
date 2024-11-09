@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZWalks.API", "NZWalks.API\NZWalks.API.csproj", "{5ED6BD22-59C1-4791-977C-9A91C11ABF6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EDC31792-AA57-45E2-8FBB-B26A3E827D83}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5ED6BD22-59C1-4791-977C-9A91C11ABF6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED6BD22-59C1-4791-977C-9A91C11ABF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED6BD22-59C1-4791-977C-9A91C11ABF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED6BD22-59C1-4791-977C-9A91C11ABF6B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA9AD6B3-17B6-4BFA-B9A9-B7B6163DF09F}
+	EndGlobalSection
+EndGlobal

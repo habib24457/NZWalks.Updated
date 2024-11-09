@@ -1,0 +1,71 @@
+# Ignore build output directories
+bin/
+obj/
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# Visual Studio specific
+.vscode/
+.vs/
+.vscode/*
+
+# Rider specific
+.idea/
+
+# Mac OS specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
+desktop.ini
+
+# ASP.NET Core specific
+appsettings.*.json
+
+# Uncomment if you have secrets.json
+# secrets.json
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Docker
+docker-compose.override.yml
+docker-compose.*.yml
+Dockerfile
+*.tar
+
+# Test results
+TestResults/
+
+# Entity Framework Migrations (optional - include if you don't want to track migrations)
+#migrations/
+
+# Publish output
+publish/
+out/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+.nuget/
+
+# npm package lock files
+package-lock.json
+yarn.lock
+
+# Rider specific (JetBrains IDE)
+.idea/
+
+# Optional: Environment variables (local)
+.env
+.env.*
+
+# JetBrains Rider
+.idea/
