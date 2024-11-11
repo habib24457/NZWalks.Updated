@@ -1,6 +1,6 @@
 namespace NZWalks.API.Test.Controllers;
 
-public class RegionsControllerTest
+public class RegionsControllerTests
 {
     
 }
