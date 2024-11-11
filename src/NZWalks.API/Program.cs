@@ -8,8 +8,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+/*builder.Services.AddDbContext<NZWalksDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("NZWalksConnectionString")));*/
 builder.Services.AddDbContext<NZWalksDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("NZWalksConnectionString")));
+    options.UseInMemoryDatabase("NZWalksInMemoryDb"));
 
 builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
 builder.Services.AddScoped<IWalkRepository, SQLWalkRepository>();
