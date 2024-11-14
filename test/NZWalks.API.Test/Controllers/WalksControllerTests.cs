@@ -6,6 +6,7 @@ using NZWalks.API.Models.DTO;
 using NZWalks.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -91,7 +92,25 @@ namespace NZWalks.API.Test.Controllers
             ));
         }
         
+        [Fact]
+        public async Task GetAllWalk_ShouldReturnOkResult_WhenNoWalksExist()
+        {
+            // Arrange
+            var walkRepository = Substitute.For<IWalkRepository>();
+            var walksDomainModelWithNoWalk = new List<Walk>(); 
+            var mockMapper = Substitute.For<IMapper>();
+            walkRepository.GetWalk().Returns(Task.FromResult(walksDomainModelWithNoWalk));
+            var walksController = new WalksController(walkRepository, mockMapper);
+
+            // Act
+            var result = await walksController.GetAllWalk();
+
+            // Assert
+            Assert.IsType<OkObjectResult>(result); ;
+        }
+        
     }
     
+
     
 }
