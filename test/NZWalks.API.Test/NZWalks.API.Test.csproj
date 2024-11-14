@@ -17,4 +17,8 @@
         <ProjectReference Include="..\..\src\NZWalks.API\NZWalks.API.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="MappingProfile\" />
+    </ItemGroup>
+
 </Project>

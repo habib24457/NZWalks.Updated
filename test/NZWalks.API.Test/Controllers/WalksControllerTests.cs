@@ -13,18 +13,7 @@ namespace NZWalks.API.Test.Controllers
 {
     public class WalksControllerTests
     {
-        //private readonly IWalkRepository _mockWalkRepository;
-        private readonly IMapper _mapper;
-
-        public WalksControllerTests()
-        {
-            var configuration = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<MappingProfile>();  // Add your mapping profile here
-            });
-            _mapper = new Mapper(configuration);
-        }
-
+        
         [Fact]
         public async Task Create_ShouldReturnCreatedAtAction_WhenWalkIsCreated()
         {
@@ -101,5 +90,8 @@ namespace NZWalks.API.Test.Controllers
                 x.RegionId == walkDomainModel.RegionId
             ));
         }
+        
     }
+    
+    
 }
