@@ -30,6 +30,7 @@ namespace NZWalks.API.Test.Controllers
         {
             // Arrange
             var walkRepository = Substitute.For<IWalkRepository>();
+            var mockMapper = Substitute.For<IMapper>();
             var addWalkRequestDto = new AddWalkRequestDto
             {
                 Name = "New Walk",
@@ -39,28 +40,66 @@ namespace NZWalks.API.Test.Controllers
                 DifficultyId = Guid.NewGuid(),
                 RegionId = Guid.NewGuid()
             };
+            
+            // Mock RegionDTO and DifficultyDto
+            var regionDto = new RegionDTO
+            {
+                Id = addWalkRequestDto.RegionId,
+                Name = "Forest Region",
+                Code = "FR",
+                RegionImageUrl = "https://example.com/region.jpg"
+            };
 
-            // Map the AddWalkRequestDto to Walk domain model using AutoMapper
-            var walkDomainModel = _mapper.Map<Walk>(addWalkRequestDto);
-            walkDomainModel.Id = Guid.NewGuid();
-            var walkDtoModel = _mapper.Map<WalkDto>(walkDomainModel);
+            var difficultyDto = new DifficultyDto
+            {
+                Id = addWalkRequestDto.DifficultyId,
+                Name = "Moderate"
+            };
+            
+            // Mock Walk domain model
+            var walkDomainModel = new Walk
+            {
+                Id = Guid.NewGuid(),
+                Name = addWalkRequestDto.Name,
+                Description = addWalkRequestDto.Description,
+                LengthInKm = addWalkRequestDto.LengthInKm,
+                WalkImageUrl = addWalkRequestDto.WalkImageUrl,
+                DifficultyId = addWalkRequestDto.DifficultyId,
+                RegionId = addWalkRequestDto.RegionId
+            };
+            
+            // Mock WalkDto
+            var walkDtoModel = new WalkDto
+            {
+                Id = walkDomainModel.Id,
+                Name = walkDomainModel.Name,
+                Description = walkDomainModel.Description,
+                LengthInKm = walkDomainModel.LengthInKm,
+                WalkImageUrl = walkDomainModel.WalkImageUrl,
+                Region = regionDto,
+                Difficulty = difficultyDto
+            };
+            
+            mockMapper.Map<Walk>(addWalkRequestDto).Returns(walkDomainModel);
             walkRepository.CreateAsync(walkDomainModel).Returns(Task.FromResult(walkDomainModel));
-            var walkController = new WalksController(walkRepository,_mapper);
-
-            // Act
-            var result = await walkController.Create(addWalkRequestDto);
+            mockMapper.Map<WalkDto>(walkDomainModel).Returns(walkDtoModel);
+            var walksController = new WalksController(walkRepository, mockMapper);
+            
+            //Act
+            var result = await walksController.Create(addWalkRequestDto);
+            
 
             // Assert
             var createdResult = Assert.IsType<CreatedAtActionResult>(result);
-            var resultValue = Assert.IsType<WalkDto>(createdResult.Value);
-            Assert.Equal(walkDtoModel.Id, resultValue.Id);
-            Assert.Equal(walkDtoModel.Name, resultValue.Name);
-            Assert.Equal(walkDtoModel.Description, resultValue.Description);
-            Assert.Equal(walkDtoModel.LengthInKm, resultValue.LengthInKm);
-            Assert.Equal(walkDtoModel.WalkImageUrl, resultValue.WalkImageUrl);
-            _mapper.Received(1).Map<Walk>(addWalkRequestDto);
-            _mapper.Received(1).Map<WalkDto>(walkDomainModel);
-            await walkRepository.Received(1).CreateAsync(walkDomainModel);
+            Assert.Equal(nameof(walksController.Create), createdResult.ActionName);
+            await walkRepository.Received(1).CreateAsync(Arg.Is<Walk>(x => 
+                x.Name == walkDomainModel.Name &&
+                x.Description == walkDomainModel.Description &&
+                x.LengthInKm == walkDomainModel.LengthInKm &&
+                x.WalkImageUrl == walkDomainModel.WalkImageUrl &&
+                x.DifficultyId == walkDomainModel.DifficultyId &&
+                x.RegionId == walkDomainModel.RegionId
+            ));
         }
     }
 }

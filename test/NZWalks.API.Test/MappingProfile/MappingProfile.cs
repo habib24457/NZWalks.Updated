@@ -12,6 +12,6 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.RegionId, opt => opt.MapFrom(src => src.RegionId));
 
         // Map Walk to WalkDto
-        CreateMap<Walk, WalkDto>();
+        CreateMap<Walk, WalkDto>().ReverseMap();
     }
 }
