@@ -93,7 +93,7 @@ namespace NZWalks.API.Test.Controllers
         }
         
         [Fact]
-        public async Task GetAllWalk_ShouldReturnOkResult_WhenNoWalksExist()
+        public async Task GetAllWalk_ShouldReturnOkWithNull_WhenNoWalksExist()
         {
             // Arrange
             var walkRepository = Substitute.For<IWalkRepository>();
@@ -106,7 +106,8 @@ namespace NZWalks.API.Test.Controllers
             var result = await walksController.GetAllWalk();
 
             // Assert
-            Assert.IsType<OkObjectResult>(result); ;
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            Assert.Null(okResult.Value);
         }
         
     }
