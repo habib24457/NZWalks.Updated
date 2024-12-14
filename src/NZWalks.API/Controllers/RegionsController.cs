@@ -24,7 +24,7 @@ namespace NZWalks.API.Controllers
         }
 
         [HttpGet]
-		public async Task<IActionResult> GetAll()
+		public async Task<IActionResult> GetAllRegion()
 		{
             var regionsDomain = await regionRepository.GetAllAsync();
             var regionsDto = mapper.Map<List<RegionDTO>>(regionsDomain);

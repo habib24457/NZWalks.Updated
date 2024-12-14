@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -60,5 +61,23 @@ public class RegionsControllerTests
             r.Code == regionDomain.Code &&
             r.RegionImageUrl == regionDomain.RegionImageUrl
             ));
+    }
+    
+    [Fact]
+    public async Task GetAllRegions_ShouldReturnOkWithNull_WhenNoWalksExist()
+    {
+        // Arrange
+        var regionRepository = Substitute.For<IRegionRepository>();
+        var walksDomainModelWithNoWalk = new List<Region>();
+        var mockMapper = Substitute.For<IMapper>();
+        regionRepository.GetAllAsync().Returns(Task.FromResult(walksDomainModelWithNoWalk));
+        var regionsController = new RegionsController(regionRepository, mockMapper);
+
+        // Act
+        var result = await regionsController.GetAllRegion();
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        Assert.Null(okResult.Value);
     }
 }
