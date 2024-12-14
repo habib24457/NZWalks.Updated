@@ -13,14 +13,14 @@ namespace NZWalks.API.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<Walk> CreateAsync(Walk walk)
+        public async Task<Walk> CreateWalkAsync(Walk walk)
         {
             await dbContext.Walks.AddAsync(walk);
             await dbContext.SaveChangesAsync();
             return walk;
         }
 
-        public async Task<Walk?> DeleteWalk(Guid id)
+        public async Task<Walk?> DeleteWalkAsync(Guid id)
         {
             var existingWalk = await dbContext.Walks.FirstOrDefaultAsync(x => x.Id == id);
             if(existingWalk == null)
@@ -34,7 +34,7 @@ namespace NZWalks.API.Repositories
             return existingWalk;
         }
 
-        public async Task<Walk?> GetById(Guid id)
+        public async Task<Walk?> GetWalkByIdAsync(Guid id)
         {
            return await dbContext.Walks
                 .Include("Difficulty")
@@ -42,7 +42,7 @@ namespace NZWalks.API.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<List<Walk>> GetWalk()
+        public async Task<List<Walk>> GetWalkAsync()
         {
             /*Include("EntityName") = this will work as Navigation Property, 
              * this will go to the database and look for the EntityName
@@ -53,7 +53,7 @@ namespace NZWalks.API.Repositories
            return await dbContext.Walks.Include("Difficulty").Include("Region").ToListAsync();
         }
 
-        public async Task<Walk?> UpdateWalk(Guid id, Walk walk)
+        public async Task<Walk?> UpdateWalkAsync(Guid id, Walk walk)
         {
             var existingWalk = await dbContext.Walks.FirstOrDefaultAsync(x => x.Id == id);
 

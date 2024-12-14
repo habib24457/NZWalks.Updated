@@ -14,7 +14,6 @@ namespace NZWalks.API.Test.Controllers
 {
     public class WalksControllerTests
     {
-        
         [Fact]
         public async Task Create_ShouldReturnCreatedAtAction_WhenWalkIsCreated()
         {
@@ -30,7 +29,7 @@ namespace NZWalks.API.Test.Controllers
                 DifficultyId = Guid.NewGuid(),
                 RegionId = Guid.NewGuid()
             };
-            
+
             // Mock RegionDTO and DifficultyDto
             var regionDto = new RegionDTO
             {
@@ -45,7 +44,7 @@ namespace NZWalks.API.Test.Controllers
                 Id = addWalkRequestDto.DifficultyId,
                 Name = "Moderate"
             };
-            
+
             // Mock Walk domain model
             var walkDomainModel = new Walk
             {
@@ -57,7 +56,7 @@ namespace NZWalks.API.Test.Controllers
                 DifficultyId = addWalkRequestDto.DifficultyId,
                 RegionId = addWalkRequestDto.RegionId
             };
-            
+
             // Mock WalkDto
             var walkDtoModel = new WalkDto
             {
@@ -69,20 +68,20 @@ namespace NZWalks.API.Test.Controllers
                 Region = regionDto,
                 Difficulty = difficultyDto
             };
-            
+
             mockMapper.Map<Walk>(addWalkRequestDto).Returns(walkDomainModel);
-            walkRepository.CreateAsync(walkDomainModel).Returns(Task.FromResult(walkDomainModel));
+            walkRepository.CreateWalkAsync(walkDomainModel).Returns(Task.FromResult(walkDomainModel));
             mockMapper.Map<WalkDto>(walkDomainModel).Returns(walkDtoModel);
             var walksController = new WalksController(walkRepository, mockMapper);
-            
+
             //Act
-            var result = await walksController.Create(addWalkRequestDto);
-            
+            var result = await walksController.CreateWalk(addWalkRequestDto);
+
 
             // Assert
             var createdResult = Assert.IsType<CreatedAtActionResult>(result);
-            Assert.Equal(nameof(walksController.Create), createdResult.ActionName);
-            await walkRepository.Received(1).CreateAsync(Arg.Is<Walk>(x => 
+            Assert.Equal(nameof(walksController.CreateWalk), createdResult.ActionName);
+            await walkRepository.Received(1).CreateWalkAsync(Arg.Is<Walk>(x =>
                 x.Name == walkDomainModel.Name &&
                 x.Description == walkDomainModel.Description &&
                 x.LengthInKm == walkDomainModel.LengthInKm &&
@@ -91,15 +90,15 @@ namespace NZWalks.API.Test.Controllers
                 x.RegionId == walkDomainModel.RegionId
             ));
         }
-        
+
         [Fact]
         public async Task GetAllWalk_ShouldReturnOkWithNull_WhenNoWalksExist()
         {
             // Arrange
             var walkRepository = Substitute.For<IWalkRepository>();
-            var walksDomainModelWithNoWalk = new List<Walk>(); 
+            var walksDomainModelWithNoWalk = new List<Walk>();
             var mockMapper = Substitute.For<IMapper>();
-            walkRepository.GetWalk().Returns(Task.FromResult(walksDomainModelWithNoWalk));
+            walkRepository.GetWalkAsync().Returns(Task.FromResult(walksDomainModelWithNoWalk));
             var walksController = new WalksController(walkRepository, mockMapper);
 
             // Act

@@ -23,16 +23,16 @@ namespace NZWalks.API.Controllers
 
 		//Create Walk
 		[HttpPost]
-		public async Task<IActionResult> Create([FromBody] AddWalkRequestDto addWalkRequestDto)
+		public async Task<IActionResult> CreateWalk([FromBody] AddWalkRequestDto addWalkRequestDto)
 		{
 			//Map addWalksRequestDto Dto to domainmodel walk
 			var walkDomainModel = mapper.Map<Walk>(addWalkRequestDto);
-			walkDomainModel = await walkRepository.CreateAsync(walkDomainModel);
+			walkDomainModel = await walkRepository.CreateWalkAsync(walkDomainModel);
 
 			//map domain to dto
 			var walkDtoModel = mapper.Map<WalkDto>(walkDomainModel);
 
-			return CreatedAtAction(nameof(Create), new { id = walkDtoModel.Id, walkDtoModel });
+			return CreatedAtAction(nameof(CreateWalk), new { id = walkDtoModel.Id, walkDtoModel });
 		}
 
 
@@ -40,7 +40,7 @@ namespace NZWalks.API.Controllers
 		[HttpGet]
 		public async Task<IActionResult> GetAllWalk()
 		{
-			var walksDomainModel = await walkRepository.GetWalk();
+			var walksDomainModel = await walkRepository.GetWalkAsync();
 			var walksDto = mapper.Map<List<WalkDto>>(walksDomainModel);
 			return Ok(walksDto);
 		}
@@ -48,9 +48,9 @@ namespace NZWalks.API.Controllers
 		//Get Single Walk by ID
 		[HttpGet]
 		[Route("{id:Guid}")]
-		public async Task<IActionResult> GetById([FromRoute] Guid id)
+		public async Task<IActionResult> GetWalkById([FromRoute] Guid id)
 		{
-			var walkDomainModel = await walkRepository.GetById(id);
+			var walkDomainModel = await walkRepository.GetWalkByIdAsync(id);
 			if(walkDomainModel == null)
 			{
 				return NotFound();
@@ -65,7 +65,7 @@ namespace NZWalks.API.Controllers
 		public async Task<IActionResult> UpdateWalk([FromBody] UpdateWalkRequestDto updateWalkRequestDto, [FromRoute]Guid id)
 		{
 			var walkDomainModel = mapper.Map<Walk>(updateWalkRequestDto);
-			walkDomainModel = await walkRepository.UpdateWalk(id, walkDomainModel);
+			walkDomainModel = await walkRepository.UpdateWalkAsync(id, walkDomainModel);
 			if(walkDomainModel == null)
 			{
 				return NotFound();
@@ -80,7 +80,7 @@ namespace NZWalks.API.Controllers
         [Route("{id:Guid}")]
         public async Task<IActionResult> DeleteWalk([FromRoute] Guid id)
 		{
-			var walkDomainModel = await walkRepository.DeleteWalk(id);
+			var walkDomainModel = await walkRepository.DeleteWalkAsync(id);
             if (walkDomainModel == null)
             {
                 return NotFound();
