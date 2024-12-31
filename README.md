@@ -1,17 +1,40 @@
 **NZWalks (New Zone Walks)**  
+New Zone Walk is an .Net Core Web API that I have been developing to build a web platform for walk enthusiast. 
+End user can suggest a new walking region and set the difficulty, for other users to follow.
+## Database Schema
 
-NZWalks is a .NET Core Web API that helps users discover and suggest new walking zones. The project currently provides a backend API for managing walking zone data, with plans to add a user interface in the near future. Whether you're looking for a new walking path or want to share one with others, NZWalks makes it easier to explore and contribute to walking zones.
+### Walk Table
+| Column Name     | Data Type | Nullable? |
+|------------------|-----------|-----------|
+| Id              | GUID      | No        |
+| Name            | string    | No        |
+| Description     | string    | No        |
+| LengthInKM      | string    | No        |
+| WalkImageUrl    | string    | Yes       |
+| RegionId        | string    | No        |
+| Difficulty      | string    | No        |
 
-**Features**  
+### Region Table
+| Column Name     | Data Type | Nullable? |
+|------------------|-----------|-----------|
+| Id              | GUID      | No        |
+| Code            | number    | No        |
+| Name            | string    | No        |
 
-* Discover New Zones: Search for walking zones based on user suggestions (API endpoint).
-* Contribute Suggestions: Add your own walking zones to the database for others to explore (API endpoint).
-* Database Integration: All data is stored in a lightweight SQLite database.
-* Robust Unit Testing: Ensures API reliability with comprehensive xUnit tests.  
+### Difficulty Table
+| Column Name     | Data Type | Nullable? |
+|------------------|-----------|-----------|
+| Id              | GUID      | No        |
+| Level           | string    | No        |
+
+**Relations**
+Walk and Region has 1:1
+Walk and Difficulty has 1:1
 
 **Technologies Used**  
 
 * Framework: .NET Core 7
+* Entity Framework Core
 * Database: SQLite
 * Testing Framework: xUnit  
 
