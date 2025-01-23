@@ -9,6 +9,7 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
+    <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="9.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
@@ -30,6 +31,7 @@
     <None Remove="Repositories\" />
     <None Remove="Mappings\" />
   </ItemGroup>
+
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Models\Domain\" />
@@ -38,7 +40,9 @@
     <Folder Include="Repositories\" />
     <Folder Include="Mappings\" />
   </ItemGroup>
+
   <ItemGroup>
     <None Include="..\.editorconfig" />
   </ItemGroup>
+
 </Project>
