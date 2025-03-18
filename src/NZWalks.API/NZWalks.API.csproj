@@ -37,7 +37,6 @@
     <Folder Include="Models\Domain\" />
     <Folder Include="Data\" />
     <Folder Include="Models\DTO\" />
-    <Folder Include="Repositories\" />
     <Folder Include="Mappings\" />
   </ItemGroup>
 

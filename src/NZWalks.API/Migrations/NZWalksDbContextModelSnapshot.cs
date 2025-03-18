@@ -79,41 +79,44 @@ namespace NZWalks.API.Migrations
                         new
                         {
                             Id = new Guid("f7248fc3-2585-4efb-8d1d-1c555f4087f6"),
-                            Code = "AKL",
-                            Name = "Auckland",
+                            Code = "DUS",
+                            Name = "Duisburg",
                             RegionImageUrl = "https://images.pexels.com/photos/5169056/pexels-photo-5169056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                         },
                         new
                         {
                             Id = new Guid("6884f7d7-ad1f-4101-8df3-7a6fa7387d81"),
-                            Code = "NTL",
-                            Name = "Northland"
+                            Code = "MUL",
+                            Name = "Mülheim",
+                            RegionImageUrl = "https://images.pexels.com/photos/5169056/pexels-photo-5169056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                         },
                         new
                         {
                             Id = new Guid("14ceba71-4b51-4777-9b17-46602cf66153"),
-                            Code = "BOP",
-                            Name = "Bay Of Plenty"
+                            Code = "KOL",
+                            Name = "Köln",
+                            RegionImageUrl = "https://images.pexels.com/photos/5169056/pexels-photo-5169056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                         },
                         new
                         {
                             Id = new Guid("cfa06ed2-bf65-4b65-93ed-c9d286ddb0de"),
-                            Code = "WGN",
-                            Name = "Wellington",
+                            Code = "BER",
+                            Name = "Berlim",
                             RegionImageUrl = "https://images.pexels.com/photos/4350631/pexels-photo-4350631.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                         },
                         new
                         {
                             Id = new Guid("906cb139-415a-4bbb-a174-1a1faf9fb1f6"),
-                            Code = "NSN",
-                            Name = "Nelson",
+                            Code = "HAM",
+                            Name = "Hamburg",
                             RegionImageUrl = "https://images.pexels.com/photos/13918194/pexels-photo-13918194.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                         },
                         new
                         {
                             Id = new Guid("f077a22e-4248-4bf6-b564-c7cf4e250263"),
-                            Code = "STL",
-                            Name = "Southland"
+                            Code = "STG",
+                            Name = "Stuttgurt",
+                            RegionImageUrl = "https://images.pexels.com/photos/5169056/pexels-photo-5169056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                         });
                 });
 
