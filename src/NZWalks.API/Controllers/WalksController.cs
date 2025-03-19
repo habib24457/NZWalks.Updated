@@ -10,20 +10,20 @@ namespace NZWalks.API.Controllers
 	// /api/walks
 	[Route("api/[controller]")]
 	[ApiController]
-	public class WalksController : ControllerBase
+	public class WalksController(IWalkRepository _walkRepository, IMapper _mapper, IRegionRepository _regionRepository, IDifficultyRepository _difficultyRepository) : ControllerBase
 	{
-		private readonly IWalkRepository _walkRepository;
+		/*private readonly IWalkRepository _walkRepository;
 		private readonly IMapper _mapper;
 		private readonly IRegionRepository _regionRepository;
-		private readonly IDifficultyRepository _difficultyRepository;
+		private readonly IDifficultyRepository _difficultyRepository;*/
 
-        public WalksController(IWalkRepository walkRepository, IMapper mapper, IRegionRepository regionRepository, IDifficultyRepository difficultyRepository)
+        /*public WalksController(IWalkRepository walkRepository, IMapper mapper, IRegionRepository regionRepository, IDifficultyRepository difficultyRepository)
 		{
 			this._walkRepository = walkRepository;
 			this._regionRepository = regionRepository;
 			this._difficultyRepository = difficultyRepository;
 			this._mapper = mapper;
-		}
+		}*/
 
 		//Create Walk
 		[HttpPost]
@@ -43,8 +43,6 @@ namespace NZWalks.API.Controllers
 			{
 				addWalkRequestDto.DifficultyId = Guid.Parse("d37fa264-31a4-4156-b010-13b52c4f6ee9");
 			}
-			
-			
 				
 			//Map addWalksRequestDto Dto to domainmodel walk
 			if (addWalkRequestDto.DifficultyId == null)

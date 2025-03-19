@@ -12,16 +12,16 @@ namespace NZWalks.API.Controllers
 	//https://localhost:1234/api/regions
 	[Route("api/[controller]")]
 	[ApiController]
-	public class RegionsController : ControllerBase
+	public class RegionsController(IRegionRepository regionRepository, IMapper mapper) : ControllerBase
 	{
-        private readonly IRegionRepository regionRepository;
+        /*private readonly IRegionRepository regionRepository;
 		private readonly IMapper mapper;
 
         public RegionsController(IRegionRepository regionRepository, IMapper mapper)
         {
 			this.regionRepository = regionRepository;
 			this.mapper = mapper;
-        }
+        }*/
 
         [HttpGet]
 		public async Task<IActionResult> GetAllRegion()
