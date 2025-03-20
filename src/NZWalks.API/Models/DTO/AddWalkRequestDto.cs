@@ -7,9 +7,7 @@ namespace NZWalks.API.Models.DTO
         public string Description { get; set; } = default;
         public double LengthInKm { get; set; } = default;
         public string? WalkImageUrl { get; set; }
-
         public Guid DifficultyId { get; set; } = default;
-
         public Guid RegionId { get; set; } = default;
     }
 }

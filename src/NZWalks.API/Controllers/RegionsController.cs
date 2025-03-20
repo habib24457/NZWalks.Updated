@@ -1,8 +1,5 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using NZWalks.API.Data;
 using NZWalks.API.Models.Domain;
 using NZWalks.API.Models.DTO;
 using NZWalks.API.Repositories;
@@ -14,16 +11,7 @@ namespace NZWalks.API.Controllers
 	[ApiController]
 	public class RegionsController(IRegionRepository regionRepository, IMapper mapper) : ControllerBase
 	{
-        /*private readonly IRegionRepository regionRepository;
-		private readonly IMapper mapper;
-
-        public RegionsController(IRegionRepository regionRepository, IMapper mapper)
-        {
-			this.regionRepository = regionRepository;
-			this.mapper = mapper;
-        }*/
-
-        [HttpGet]
+		[HttpGet]
 		public async Task<IActionResult> GetAllRegion()
 		{
             var regionsDomain = await regionRepository.GetAllAsync();
