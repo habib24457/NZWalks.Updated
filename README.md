@@ -9,16 +9,16 @@ End user can suggest a new walking region and set the difficulty, for other user
 | Id              | GUID      | No        |
 | Name            | string    | No        |
 | Description     | string    | No        |
-| LengthInKM      | string    | No        |
+| LengthInKM      | int       | No        |
 | WalkImageUrl    | string    | Yes       |
-| RegionId        | string    | No        |
-| Difficulty      | string    | No        |
+| RegionId        | GUID      | No        |
+| Difficulty      | GUID      | No        |
 
 ### Region Table
 | Column Name     | Data Type | Nullable? |
 |------------------|-----------|-----------|
 | Id              | GUID      | No        |
-| Code            | number    | No        |
+| Code            | int       | No        |
 | Name            | string    | No        |
 
 ### Difficulty Table
