@@ -1,0 +1,35 @@
+name: Deploy .NET 8 API to Azure Web App
+
+on:
+  push:
+    branches:
+      - main  # Change this if your branch is different
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET 8 SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'  # Using .NET 8
+
+    - name: Restore dependencies
+      run: dotnet restore NZWalks.Updated/src/NZWalks/NZWalks.csproj
+
+    - name: Build the project
+      run: dotnet build NZWalks.Updated/src/NZWalks/NZWalks.csproj --configuration Release --no-restore
+
+    - name: Publish the project
+      run: dotnet publish NZWalks.Updated/src/NZWalks/NZWalks.csproj --configuration Release --output ./publish --no-build
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'new-zone-api'  # Replace with your Azure App Service name
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ./publish
