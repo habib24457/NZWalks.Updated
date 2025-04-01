@@ -19,7 +19,6 @@ namespace NZWalks.API.Controllers
 			return Ok(regionsDto);
 		}
 
-		//get region by id
 		[HttpGet]
 		[Route("{id:Guid}")]
 		public async Task<IActionResult> GetByIdAsync([FromRoute] Guid id)
@@ -31,8 +30,7 @@ namespace NZWalks.API.Controllers
 			var regionDto = mapper.Map<RegionDTO>(region);
             return Ok(regionDto);
 		}
-
-
+		
 		[HttpPost]
 		public async Task<IActionResult> CreateRegion([FromBody] AddRegionRequestDto addRegionRequestDto)
 		{
@@ -41,7 +39,6 @@ namespace NZWalks.API.Controllers
 			var regionDto = mapper.Map<RegionDTO>(regionDomainModel);
             return CreatedAtAction(nameof(CreateRegion), new{id = regionDto.Id},regionDto);
 		}
-
 
 		[HttpPut]
         [Route("{id:Guid}")]

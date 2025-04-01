@@ -7,24 +7,10 @@ using AutoMapper;
 
 namespace NZWalks.API.Controllers
 {
-	// /api/walks
 	[Route("api/[controller]")]
 	[ApiController]
 	public class WalksController(IWalkRepository walkRepository, IMapper mapper, IRegionRepository regionRepository, IDifficultyRepository difficultyRepository) : ControllerBase
 	{
-		/*private readonly IWalkRepository _walkRepository;
-		private readonly IMapper _mapper;
-		private readonly IRegionRepository _regionRepository;
-		private readonly IDifficultyRepository _difficultyRepository;*/
-        /*public WalksController(IWalkRepository walkRepository, IMapper mapper, IRegionRepository regionRepository, IDifficultyRepository difficultyRepository)
-		{
-			this._walkRepository = walkRepository;
-			this._regionRepository = regionRepository;
-			this._difficultyRepository = difficultyRepository;
-			this._mapper = mapper;
-		}*/
-
-		//Create Walk
 		[HttpPost]
 		public async Task<IActionResult> CreateWalk([FromBody] AddWalkRequestDto addWalkRequestDto)
 		{
@@ -43,7 +29,6 @@ namespace NZWalks.API.Controllers
 				addWalkRequestDto.DifficultyId = Guid.Parse("d37fa264-31a4-4156-b010-13b52c4f6ee9");
 			}
 				
-			//Map addWalksRequestDto Dto to domainmodel walk
 			if (addWalkRequestDto.DifficultyId == null)
 			{
 				addWalkRequestDto.DifficultyId =Guid.Parse("d37fa264-31a4-4156-b010-13b52c4f6ee9");
@@ -57,9 +42,7 @@ namespace NZWalks.API.Controllers
 
 			return CreatedAtAction(nameof(CreateWalk), new { id = walkDtoModel.Id, walkDtoModel });
 		}
-
-
-		//GET all walks
+		
 		[HttpGet]
 		public async Task<IActionResult> GetAllWalk()
 		{
@@ -68,7 +51,6 @@ namespace NZWalks.API.Controllers
 			return Ok(walksDto);
 		}
 
-		//Get Single Walk by ID
 		[HttpGet]
 		[Route("{id:Guid}")]
 		public async Task<IActionResult> GetWalkById([FromRoute] Guid id)
@@ -82,7 +64,6 @@ namespace NZWalks.API.Controllers
 			return Ok(walkDto);
 		}
 
-		//Update walk
 		[HttpPut]
         [Route("{id:Guid}")]
 		public async Task<IActionResult> UpdateWalk([FromBody] UpdateWalkRequestDto updateWalkRequestDto, [FromRoute]Guid id)
@@ -97,8 +78,6 @@ namespace NZWalks.API.Controllers
 			return Ok(walkDto);
 		}
 
-
-		//Delete walk
 		[HttpDelete]
         [Route("{id:Guid}")]
         public async Task<IActionResult> DeleteWalk([FromRoute] Guid id)
