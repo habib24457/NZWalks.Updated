@@ -22,13 +22,13 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Restore dependencies
-        run: dotnet restore NZWalks.Updated/src/NZWalks.API/NZWalks.API.csproj
+        run: dotnet restore src/NZWalks.API/NZWalks.API.csproj
 
       - name: Build solution
-        run: dotnet build NZWalks.Updated/src/NZWalks.API/NZWalks.API.csproj --configuration Release --no-restore
+        run: dotnet build src/NZWalks.API/NZWalks.API.csproj --configuration Release --no-restore
 
       - name: Run unit tests
-        run: dotnet test NZWalks.Updated/src/NZWalks.API/NZWalks.API.csproj --configuration Release --no-build
+        run: dotnet test src/NZWalks.API/NZWalks.API.csproj --configuration Release --no-build
 
       - name: Publish the application
-        run: dotnet publish NZWalks.Updated/src/NZWalks.API/NZWalks.API.csproj -c Release -o ${{ github.workspace }}/publish --no-build
+        run: dotnet publish src/NZWalks.API/NZWalks.API.csproj -c Release -o ${{ github.workspace }}/publish --no-build
