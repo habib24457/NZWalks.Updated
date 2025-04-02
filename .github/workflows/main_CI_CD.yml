@@ -1,0 +1,34 @@
+name: CI/CD Pipeline - Deploy ASP.NET Core App to Azure
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # Required for actions/checkout
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4 
+
+      - name: Set up .NET Core SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: Restore dependencies
+        run: dotnet restore NZWalks.Updated/src/NZWalks.API/NZWalks.API.csproj
+
+      - name: Build solution
+        run: dotnet build NZWalks.Updated/src/NZWalks.API/NZWalks.API.csproj --configuration Release --no-restore
+
+      - name: Run unit tests
+        run: dotnet test NZWalks.Updated/src/NZWalks.API/NZWalks.API.csproj --configuration Release --no-build
+
+      - name: Publish the application
+        run: dotnet publish NZWalks.Updated/src/NZWalks.API/NZWalks.API.csproj -c Release -o ${{ github.workspace }}/publish --no-build
