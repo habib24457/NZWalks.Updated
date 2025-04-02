@@ -19,13 +19,13 @@ jobs:
         dotnet-version: '8.0.x'  # Using .NET 8
 
     - name: Restore dependencies
-      run: dotnet restore NZWalks.Updated/src/NZWalks.API/NZWalks.API.csproj
+      run: dotnet restore src/NZWalks.API/NZWalks.API.csproj
 
     - name: Build the project
-      run: dotnet build NZWalks.Updated/src/NZWalks.API/NZWalks.API.csproj --configuration Release --no-restore
+      run: dotnet build src/NZWalks.API/NZWalks.API.csproj --configuration Release --no-restore
 
     - name: Publish the project
-      run: dotnet publish NZWalks.Updated/src/NZWalks.API/NZWalks.API.csproj --configuration Release --output ./publish --no-build
+      run: dotnet publish src/NZWalks.API/NZWalks.API.csproj --configuration Release --output ./publish --no-build
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
