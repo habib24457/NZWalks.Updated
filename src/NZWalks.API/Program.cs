@@ -10,7 +10,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<NZWalksDbContext>(options =>
 
-options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+options.UseNpgsql(builder.Configuration.GetConnectionString("ConnectionStrings_Database")));
 
 builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
 builder.Services.AddScoped<IWalkRepository, SQLWalkRepository>();
