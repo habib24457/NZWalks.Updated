@@ -8,19 +8,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-/*builder.Services.AddDbContext<NZWalksDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("NZWalksConnectionString")));*/
 builder.Services.AddDbContext<NZWalksDbContext>(options =>
-    options.UseInMemoryDatabase("NZWalksInMemoryDb"));
+
+options.UseSqlServer(builder.Configuration.GetConnectionString("NZWalksConnectionString")));
 
 builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
 builder.Services.AddScoped<IWalkRepository, SQLWalkRepository>();
+builder.Services.AddScoped<IDifficultyRepository, DifficultyRepository>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
