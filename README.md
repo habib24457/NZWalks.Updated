@@ -1,6 +1,11 @@
 **NZWalks (New Zone Walks)**  
 New Zone Walk is an .Net Core Web API that I have been developing to build a web platform for walk enthusiast. 
 End user can suggest a new walking region and set the difficulty, for other users to follow.
+
+## Deployment  
+-Deployed the API in Azure
+-Endpoints in Swagger UI: https://new-zone-api-brhpfkd2emavh2ep.germanywestcentral-01.azurewebsites.net/swagger/index.html  
+
 ## Database Schema
 
 ### Walk Table
@@ -28,16 +33,18 @@ End user can suggest a new walking region and set the difficulty, for other user
 | Level           | string    | No        |
 
 **Relations**
-Walk and Region has 1:1
+Walk and Region has 1:1  
+
 Walk and Difficulty has 1:1
 
 **Technologies Used**  
 
-* Framework: .NET Core 7
+* Framework: .NET Core 8
 * Entity Framework Core
 * Database: SQLite
 * Testing Framework: xUnit  
 
+## To run the API Locally:
 **Installation**  
 
 To get started with NZWalks, follow these steps:
@@ -73,6 +80,3 @@ dotnet run`
 `bash
 Copy code
 dotnet test`  
-
-6. Usage 
-Access the API at http://localhost:5000 (or your configured port).
