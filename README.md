@@ -41,7 +41,7 @@ Walk and Difficulty has 1:1
 
 * Framework: .NET Core 8
 * Entity Framework Core
-* Database: SQLite
+* Database: PostgreSQL
 * Testing Framework: xUnit  
 
 ## To run the API Locally:
