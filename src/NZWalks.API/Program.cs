@@ -7,10 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend", policy =>
+    options.AddPolicy("AllowAll", policy =>
     {
         policy
-            .WithOrigins("https://newwalkzone.netlify.app/")
+            .AllowAnyOrigin()    
             .AllowAnyMethod()
             .AllowAnyHeader();
     });
@@ -40,7 +40,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 
 
 app.UseHttpsRedirection();
-app.UseCors("AllowFrontend");
+app.UseCors("AllowAll");
 app.UseAuthorization();
 
 app.MapControllers();
