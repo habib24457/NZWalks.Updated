@@ -10,7 +10,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend", policy =>
     {
         policy
-            .WithOrigins("https://newwalkzone.netlify.app")
+            .WithOrigins("https://newwalkzone.netlify.app/")
             .AllowAnyMethod()
             .AllowAnyHeader();
     });
